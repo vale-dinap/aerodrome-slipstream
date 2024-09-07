@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
-pragma solidity >=0.7.5;
+pragma solidity >=0.5.0;
 pragma abicoder v2;
 
-import "contracts/core/interfaces/callback/ICLSwapCallback.sol";
+import "../../core/interfaces/callback/ICLSwapCallback.sol";
 
 /// @title Router token swapping functionality
 /// @notice Functions for swapping tokens via CL

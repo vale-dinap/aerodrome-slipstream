@@ -1,11 +1,10 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 pragma solidity >=0.5.0;
-pragma abicoder v2;
 
-import {Math} from "@openzeppelin/contracts/math/Math.sol";
+import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 
 import {TickMath} from "../../core/libraries/TickMath.sol";
-import "contracts/core/interfaces/ICLPool.sol";
+import "../../core/interfaces/ICLPool.sol";
 import "../lens/TickLens.sol";
 
 /// @title Tick Lens contract
@@ -65,7 +64,7 @@ contract TickLensTest is TickLens {
             tickBitmapIndex = startBitmapIndex + int16(j);
             for (uint256 i = 0; i < 256; i++) {
                 if (bitmap & (1 << i) > 0) {
-                    populatedTick = ((tickBitmapIndex << 8) + int24(i)) * tickSpacing;
+                    populatedTick = ((tickBitmapIndex << 8) + int24(uint24(i))) * tickSpacing;
 
                     (uint128 liquidityGross, int128 liquidityNet,,,,,,,,) = ICLPool(pool).ticks(populatedTick);
 

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity =0.7.6;
+pragma solidity >=0.8.0;
 
 interface IVotingRewardsFactory {
     /// @notice creates a BribeVotingReward and a FeesVotingReward contract for a gauge

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
-pragma solidity >=0.5.0 <0.8.0;
+pragma solidity >=0.8.0;
 
 /// @title Oracle
 /// @notice Provides price and liquidity data useful for a wide variety of system designs
@@ -35,7 +35,7 @@ library Oracle {
         uint32 delta = blockTimestamp - last.blockTimestamp;
         return Observation({
             blockTimestamp: blockTimestamp,
-            tickCumulative: last.tickCumulative + int56(tick) * delta,
+            tickCumulative: last.tickCumulative + int56(tick) * int56(uint56(delta)),
             secondsPerLiquidityCumulativeX128: last.secondsPerLiquidityCumulativeX128
                 + ((uint160(delta) << 128) / (liquidity > 0 ? liquidity : 1)),
             initialized: true
@@ -264,7 +264,7 @@ library Oracle {
             uint32 targetDelta = target - beforeOrAt.blockTimestamp;
             return (
                 beforeOrAt.tickCumulative
-                    + ((atOrAfter.tickCumulative - beforeOrAt.tickCumulative) / observationTimeDelta) * targetDelta,
+                    + ((atOrAfter.tickCumulative - beforeOrAt.tickCumulative) / int56(uint56(observationTimeDelta))) * int56(uint56(targetDelta)),
                 beforeOrAt.secondsPerLiquidityCumulativeX128
                     + uint160(
                         (

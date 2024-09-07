@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
-pragma solidity =0.7.6;
+pragma solidity >=0.5.0;
 
-import "../../interfaces/ICLFactory.sol";
+import "../ICLFactory.sol";
 
 interface IFeeModule {
     /// @notice Get the factory that the fee module belongs to

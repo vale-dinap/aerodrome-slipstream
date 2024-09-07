@@ -1,10 +1,9 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
-pragma solidity =0.7.6;
-pragma abicoder v2;
+pragma solidity >=0.8.0;
 
-import "contracts/core/interfaces/ICLPool.sol";
-import "contracts/core/libraries/FixedPoint128.sol";
-import "contracts/core/libraries/FullMath.sol";
+import "../core/interfaces/ICLPool.sol";
+import "../core/libraries/FixedPoint128.sol";
+import "../core/libraries/FullMath.sol";
 
 import "./interfaces/INonfungiblePositionManager.sol";
 import "./interfaces/INonfungibleTokenPositionDescriptor.sol";
@@ -201,17 +200,17 @@ contract NonfungiblePositionManager is
     }
 
     modifier isAuthorizedForToken(uint256 tokenId) {
-        require(_isApprovedOrOwner(msg.sender, tokenId));
+        require(_isAuthorized(msg.sender, tokenId));
         _;
     }
 
     function tokenURI(uint256 tokenId) public view override(ERC721, IERC721Metadata) returns (string memory) {
-        require(_exists(tokenId));
+        require(_ownerOf(tokenId) != address(0));
         return INonfungibleTokenPositionDescriptor(tokenDescriptor).tokenURI(this, tokenId);
     }
 
     // save bytecode by removing implementation of unused method
-    function baseURI() public pure override returns (string memory) {}
+    function baseURI() public pure returns (string memory) {}
 
     /// @inheritdoc INonfungiblePositionManager
     function increaseLiquidity(IncreaseLiquidityParams calldata params)
@@ -430,13 +429,13 @@ contract NonfungiblePositionManager is
 
     /// @inheritdoc IERC721
     function getApproved(uint256 tokenId) public view override(ERC721, IERC721) returns (address) {
-        require(_exists(tokenId), "NE");
+        require(_ownerOf(tokenId) != address(0), "NE");
 
         return _positions[tokenId].operator;
     }
 
     /// @dev Overrides _approve to use the operator in the position, which is packed with the position permit nonce
-    function _approve(address to, uint256 tokenId) internal override(ERC721) {
+    function _approve(address to, uint256 tokenId) internal {
         _positions[tokenId].operator = to;
         emit Approval(ownerOf(tokenId), to, tokenId);
     }

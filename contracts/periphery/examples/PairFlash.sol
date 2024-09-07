@@ -1,9 +1,8 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
-pragma solidity =0.7.6;
-pragma abicoder v2;
+pragma solidity >=0.8.0;
 
-import "contracts/core/interfaces/callback/ICLFlashCallback.sol";
-import "contracts/core/libraries/LowGasSafeMath.sol";
+import "../../core/interfaces/callback/ICLFlashCallback.sol";
+import "../../core/libraries/LowGasSafeMath.sol";
 
 import "../base/PeripheryPayments.sol";
 import "../base/PeripheryImmutableState.sol";

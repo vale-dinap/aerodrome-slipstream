@@ -1,9 +1,8 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
-pragma solidity >=0.5.0;
-pragma abicoder v2;
+pragma solidity >=0.8.0;
 
 import {TickMath} from "../../core/libraries/TickMath.sol";
-import "contracts/core/interfaces/ICLPool.sol";
+import "../../core/interfaces/ICLPool.sol";
 import "../interfaces/ITickLens.sol";
 
 /// @title Tick Lens contract

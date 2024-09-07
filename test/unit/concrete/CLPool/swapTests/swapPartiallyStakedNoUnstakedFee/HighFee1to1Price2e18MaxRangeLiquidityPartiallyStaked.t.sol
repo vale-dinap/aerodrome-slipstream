@@ -1,4 +1,4 @@
-pragma solidity ^0.7.6;
+pragma solidity >=0.8.0;
 pragma abicoder v2;
 
 import {CLPoolSwapPartiallyStakedNoUnstakeFeeTest, CLGauge} from "./CLPoolSwapPartiallyStakedNoUnstakeFee.t.sol";

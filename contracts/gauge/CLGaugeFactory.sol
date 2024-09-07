@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: BUSL-1.1
-pragma solidity =0.7.6;
+pragma solidity >=0.8.0;
 
-import "contracts/core/interfaces/ICLPool.sol";
+import "../core/interfaces/ICLPool.sol";
 import "./interfaces/ICLGaugeFactory.sol";
 import "./CLGauge.sol";
 import "@openzeppelin/contracts/proxy/Clones.sol";
@@ -53,7 +53,7 @@ contract CLGaugeFactory is ICLGaugeFactory {
         address token0 = ICLPool(_pool).token0();
         address token1 = ICLPool(_pool).token1();
         int24 tickSpacing = ICLPool(_pool).tickSpacing();
-        _gauge = Clones.clone({master: implementation});
+        _gauge = Clones.clone({implementation: implementation});
         ICLGauge(_gauge).initialize({
             _pool: _pool,
             _feesVotingReward: _feesVotingReward,

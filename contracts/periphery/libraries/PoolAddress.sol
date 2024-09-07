@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
-pragma solidity >=0.5.0;
+pragma solidity >=0.8.0;
 
-import "contracts/core/interfaces/ICLFactory.sol";
+import "../../core/interfaces/ICLFactory.sol";
 import "@openzeppelin/contracts/proxy/Clones.sol";
 
 /// @title Provides functions for deriving a pool address from the factory, tokens, and the fee
@@ -30,7 +30,7 @@ library PoolAddress {
     function computeAddress(address factory, PoolKey memory key) internal view returns (address pool) {
         require(key.token0 < key.token1);
         pool = Clones.predictDeterministicAddress({
-            master: ICLFactory(factory).poolImplementation(),
+            implementation: ICLFactory(factory).poolImplementation(),
             salt: keccak256(abi.encode(key.token0, key.token1, key.tickSpacing)),
             deployer: factory
         });

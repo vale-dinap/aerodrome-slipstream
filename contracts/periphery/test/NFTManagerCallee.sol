@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity =0.7.6;
-pragma abicoder v2;
+pragma solidity >=0.8.0;
 
 import {INonfungiblePositionManager} from "contracts/periphery/NonfungiblePositionManager.sol";
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";

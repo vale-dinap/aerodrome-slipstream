@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity =0.7.6;
-pragma abicoder v2;
+pragma solidity >=0.5.0;
 
 interface IPoolFactory {
     event SetFeeManager(address feeManager);

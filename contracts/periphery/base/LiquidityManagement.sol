@@ -1,10 +1,9 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
-pragma solidity =0.7.6;
-pragma abicoder v2;
+pragma solidity >=0.8.0;
 
-import "contracts/core/interfaces/ICLFactory.sol";
-import "contracts/core/interfaces/callback/ICLMintCallback.sol";
-import "contracts/core/libraries/TickMath.sol";
+import "../../core/interfaces/ICLFactory.sol";
+import "../../core/interfaces/callback/ICLMintCallback.sol";
+import "../../core/libraries/TickMath.sol";
 
 import "../libraries/PoolAddress.sol";
 import "../libraries/CallbackValidation.sol";

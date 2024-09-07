@@ -1,22 +1,21 @@
 // SPDX-License-Identifier: BUSL-1.1
-pragma solidity =0.7.6;
-pragma abicoder v2;
+pragma solidity >=0.8.0;
 
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import {ERC721Holder} from "@openzeppelin/contracts/token/ERC721/ERC721Holder.sol";
-import {ICLGauge} from "contracts/gauge/interfaces/ICLGauge.sol";
-import {ICLGaugeFactory} from "contracts/gauge/interfaces/ICLGaugeFactory.sol";
-import {IVoter} from "contracts/core/interfaces/IVoter.sol";
-import {ICLPool} from "contracts/core/interfaces/ICLPool.sol";
+import {ERC721Holder} from "@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol";
+import {ICLGauge} from ".//interfaces/ICLGauge.sol";
+import {ICLGaugeFactory} from ".//interfaces/ICLGaugeFactory.sol";
+import {IVoter} from "../core/interfaces/IVoter.sol";
+import {ICLPool} from "../core/interfaces/ICLPool.sol";
 import {TransferHelper} from "contracts/periphery/libraries/TransferHelper.sol";
 import {INonfungiblePositionManager} from "contracts/periphery/interfaces/INonfungiblePositionManager.sol";
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
-import {EnumerableSet} from "contracts/libraries/EnumerableSet.sol";
-import {SafeCast} from "contracts/gauge/libraries/SafeCast.sol";
-import {FullMath} from "contracts/core/libraries/FullMath.sol";
-import {FixedPoint128} from "contracts/core/libraries/FixedPoint128.sol";
-import {ProtocolTimeLibrary} from "contracts/libraries/ProtocolTimeLibrary.sol";
-import {IReward} from "contracts/gauge/interfaces/IReward.sol";
+import {EnumerableSet} from "../libraries/EnumerableSet.sol";
+import {SafeCast} from ".//libraries/SafeCast.sol";
+import {FullMath} from "../core/libraries/FullMath.sol";
+import {FixedPoint128} from "../core/libraries/FixedPoint128.sol";
+import {ProtocolTimeLibrary} from "../libraries/ProtocolTimeLibrary.sol";
+import {IReward} from ".//interfaces/IReward.sol";
 
 contract CLGauge is ICLGauge, ERC721Holder, ReentrancyGuard {
     using EnumerableSet for EnumerableSet.UintSet;

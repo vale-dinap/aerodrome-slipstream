@@ -1,16 +1,16 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
-pragma solidity >=0.7.6;
+pragma solidity >=0.8.0;
 
-import "contracts/core/libraries/TickMath.sol";
+import "../../core/libraries/TickMath.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
-import "@openzeppelin/contracts/math/SafeMath.sol";
+import "@openzeppelin/contracts/utils/math/Math.sol";
 import "base64-sol/base64.sol";
 
 /// @title NFTSVG
 /// @notice Provides a function for generating an SVG associated with a CL NFT
 library NFTSVG {
     using Strings for uint256;
-    using SafeMath for uint256;
+    using Math for uint256;
 
     function generateSVG(
         string memory quoteTokenSymbol,
@@ -186,6 +186,6 @@ library NFTSVG {
             tick = tick * -1;
             sign = "-";
         }
-        return string(abi.encodePacked(sign, uint256(tick).toString()));
+        return string(abi.encodePacked(sign, uint256(int256(tick)).toString()));
     }
 }

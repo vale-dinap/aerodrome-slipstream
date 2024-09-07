@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity =0.7.6;
-pragma abicoder v2;
+pragma solidity >=0.5.0;
 
 interface IPool {
     event Fees(address indexed sender, uint256 amount0, uint256 amount1);
