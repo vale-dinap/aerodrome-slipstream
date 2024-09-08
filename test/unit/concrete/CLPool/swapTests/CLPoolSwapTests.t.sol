@@ -471,7 +471,7 @@ abstract contract CLPoolSwapTests is CLPoolTest {
             assertEq(swapErrorMessage, "SPL"); // only SPL happens
             assertApproxEqAbs(poolSetup.poolBalance0, failedSwap.poolBalance0, 1);
             assertApproxEqAbs(poolSetup.poolBalance1, failedSwap.poolBalance1, 1);
-            assertEq(int256(poolSetup.sqrtPriceX96), int256(failedSwap.poolPriceBeforeX96));
+            assertEq(int256(uint256(poolSetup.sqrtPriceX96)), int256(uint256(failedSwap.poolPriceBeforeX96)));
             assertEq(poolSetup.tick, failedSwap.tickBefore);
             return;
         } else {
@@ -544,7 +544,7 @@ abstract contract CLPoolSwapTests is CLPoolTest {
         if (eventsLength == 5) {
             assertEq(ase.entries[transferEventIndex].topics[0], keccak256("Transfer(address,address,uint256)"));
             assertEq(ase.entries[transferEventIndex].topics[1], bytes32(uint256(uint160(ase.pool))));
-            assertEq(ase.entries[transferEventIndex].topics[2], bytes32(uint256(uint160(users.alice))));
+            assertEq(ase.entries[transferEventIndex].topics[2], bytes32(uint256(uint160(address(users.alice)))));
             assertEq(
                 abi.decode(ase.entries[transferEventIndex].data, (int256)),
                 ase.zeroForOne
@@ -559,7 +559,7 @@ abstract contract CLPoolSwapTests is CLPoolTest {
         if (eventsLength > 2) {
             // Second Transfer (sender => pool)
             assertEq(ase.entries[transferEventIndex].topics[0], keccak256("Transfer(address,address,uint256)"));
-            assertEq(ase.entries[transferEventIndex].topics[1], bytes32(uint256(uint160(users.alice))));
+            assertEq(ase.entries[transferEventIndex].topics[1], bytes32(uint256(uint160(address(users.alice)))));
             assertEq(ase.entries[transferEventIndex].topics[2], bytes32(uint256(uint160(ase.pool))));
             assertEq(
                 abi.decode(ase.entries[transferEventIndex].data, (int256)),
@@ -576,7 +576,7 @@ abstract contract CLPoolSwapTests is CLPoolTest {
             keccak256("Swap(address,address,int256,int256,uint160,uint128,int24)")
         );
         assertEq(ase.entries[swapEventIndex].topics[1], bytes32(uint256(uint160(address(clCallee)))));
-        assertEq(ase.entries[swapEventIndex].topics[2], bytes32(uint256(uint160(users.alice))));
+        assertEq(ase.entries[swapEventIndex].topics[2], bytes32(uint256(uint160(address(users.alice)))));
         (int256 amount0, int256 amount1, uint160 sqrtPriceX96, uint128 liquidity, int24 tick) =
             abi.decode(ase.entries[swapEventIndex].data, (int256, int256, uint160, uint128, int24));
         assertEq(amount0, ase.poolBalance0Delta);
