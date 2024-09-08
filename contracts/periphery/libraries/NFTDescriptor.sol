@@ -6,17 +6,17 @@ import "../../core/libraries/TickMath.sol";
 import "../../core/libraries/BitMath.sol";
 import "../../core/libraries/FullMath.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
-import "@openzeppelin/contracts/utils/math/Math.sol";
-import "@openzeppelin/contracts/utils/math/SignedMath.sol";
+//import "@openzeppelin/contracts/utils/math/SafeMath.sol"; // Unnecessary with 0.8.x
+//import "@openzeppelin/contracts/utils/math/SignedSafeMath.sol"; // Unnecessary with 0.8.x
 import "./HexStrings.sol";
 
 library NFTDescriptor {
     using TickMath for int24;
     using Strings for uint256;
-    using Math for uint256;
-    using Math for uint160;
-    using Math for uint8;
-    using SignedMath for int256;
+    //using Math for uint256;
+    //using Math for uint160;
+    //using Math for uint8;
+    //using SignedSafeMath for int256;
     using HexStrings for uint256;
 
     uint256 constant sqrt10X128 = 1076067327063303206878105757264492625226;

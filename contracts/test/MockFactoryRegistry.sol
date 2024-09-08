@@ -5,7 +5,7 @@ import {IFactoryRegistry} from "../core/interfaces/IFactoryRegistry.sol";
 import {EnumerableSet} from "contracts/libraries/EnumerableSet.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
-contract MockFactoryRegistry is Ownable(msg.sender), IFactoryRegistry {
+contract MockFactoryRegistry is Ownable, IFactoryRegistry {
     using EnumerableSet for EnumerableSet.AddressSet;
 
     EnumerableSet.AddressSet private _poolFactories;

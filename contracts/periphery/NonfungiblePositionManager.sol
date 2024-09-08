@@ -200,12 +200,12 @@ contract NonfungiblePositionManager is
     }
 
     modifier isAuthorizedForToken(uint256 tokenId) {
-        require(_isAuthorized(msg.sender, tokenId));
+        require(_isApprovedOrOwner(msg.sender, tokenId));
         _;
     }
 
     function tokenURI(uint256 tokenId) public view override(ERC721, IERC721Metadata) returns (string memory) {
-        require(_ownerOf(tokenId) != address(0));
+        require(ownerOf(tokenId) != address(0));
         return INonfungibleTokenPositionDescriptor(tokenDescriptor).tokenURI(this, tokenId);
     }
 
@@ -429,7 +429,7 @@ contract NonfungiblePositionManager is
 
     /// @inheritdoc IERC721
     function getApproved(uint256 tokenId) public view override(ERC721, IERC721) returns (address) {
-        require(_ownerOf(tokenId) != address(0), "NE");
+        require(ownerOf(tokenId) != address(0), "NE");
 
         return _positions[tokenId].operator;
     }

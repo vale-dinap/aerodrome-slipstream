@@ -9,7 +9,7 @@ import {IVoter} from "../core/interfaces/IVoter.sol";
 import {ICLPool} from "../core/interfaces/ICLPool.sol";
 import {TransferHelper} from "contracts/periphery/libraries/TransferHelper.sol";
 import {INonfungiblePositionManager} from "contracts/periphery/interfaces/INonfungiblePositionManager.sol";
-import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+import {ReentrancyGuard} from "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import {EnumerableSet} from "../libraries/EnumerableSet.sol";
 import {SafeCast} from ".//libraries/SafeCast.sol";
 import {FullMath} from "../core/libraries/FullMath.sol";

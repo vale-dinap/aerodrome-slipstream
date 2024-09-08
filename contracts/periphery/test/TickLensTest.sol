@@ -41,7 +41,7 @@ contract TickLensTest is TickLens {
         // fetch bitmaps
         int24 tickSpacing = ICLPool(pool).tickSpacing();
         int16 startBitmapIndex = int16((tick / tickSpacing) >> 8);
-        maxBitmaps = Math.min(maxBitmaps, uint256(type(int16).max - startBitmapIndex) + 1);
+        maxBitmaps = Math.min(maxBitmaps, uint256(int256(type(int16).max - startBitmapIndex) + 1));
 
         // get all `maxBitmaps` starting from the given tick's bitmap index
         uint256 bitmap;
@@ -49,7 +49,7 @@ contract TickLensTest is TickLens {
         uint256[] memory bitmaps = new uint256[](maxBitmaps);
         for (uint256 j = 0; j < maxBitmaps; j++) {
             // calculate the number of populated ticks
-            bitmap = ICLPool(pool).tickBitmap(startBitmapIndex + int16(j));
+            bitmap = ICLPool(pool).tickBitmap(startBitmapIndex + int16(uint16(j)));
             numberOfPopulatedTicks += countSetBits(bitmap);
             bitmaps[j] = bitmap;
         }
@@ -61,7 +61,7 @@ contract TickLensTest is TickLens {
         int24 tickBitmapIndex;
         for (uint256 j = 0; j < maxBitmaps; j++) {
             bitmap = bitmaps[j];
-            tickBitmapIndex = startBitmapIndex + int16(j);
+            tickBitmapIndex = startBitmapIndex + int16(uint16(j));
             for (uint256 i = 0; i < 256; i++) {
                 if (bitmap & (1 << i) > 0) {
                     populatedTick = ((tickBitmapIndex << 8) + int24(uint24(i))) * tickSpacing;
