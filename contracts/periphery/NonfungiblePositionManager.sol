@@ -130,6 +130,7 @@ contract NonfungiblePositionManager is
     }
 
     /// @dev Caches a pool key
+    // solhint-disable-next-line private-vars-leading-underscore
     function cachePoolKey(address pool, PoolAddress.PoolKey memory poolKey) private returns (uint80 poolId) {
         poolId = _poolIds[pool];
         if (poolId == 0) {
@@ -435,7 +436,7 @@ contract NonfungiblePositionManager is
     }
 
     /// @dev Overrides _approve to use the operator in the position, which is packed with the position permit nonce
-    function _approve(address to, uint256 tokenId) internal {
+    function _approve(address to, uint256 tokenId) internal override {
         _positions[tokenId].operator = to;
         emit Approval(ownerOf(tokenId), to, tokenId);
     }
