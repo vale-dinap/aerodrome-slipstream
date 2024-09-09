@@ -30,7 +30,11 @@ contract NFTDescriptorTest {
         uint8 token1Decimals,
         bool flipRatio
     ) public pure returns (string memory) {
-        return NFTDescriptor.tickToDecimalString(tick, tickSpacing, token0Decimals, token1Decimals, flipRatio);
+        return NFTDescriptor.tickToDecimalString(
+            NFTDescriptor.TickToDecimalStringParams(
+                tick, tickSpacing, token0Decimals, token1Decimals, flipRatio
+            )
+        );
     }
 
     function fixedPointToDecimalString(uint160 sqrtRatioX96, uint8 token0Decimals, uint8 token1Decimals)
@@ -49,18 +53,20 @@ contract NFTDescriptorTest {
         NFTDescriptor.ConstructTokenURIParams memory params,
         uint256 quoteTokensOwed,
         uint256 baseTokensOwed
-    ) public pure returns (string memory) {
-        return NFTSVG.generateSVG({
-            quoteTokenSymbol: params.quoteTokenSymbol,
-            baseTokenSymbol: params.baseTokenSymbol,
-            quoteTokensOwed: quoteTokensOwed,
-            baseTokensOwed: baseTokensOwed,
-            tokenId: params.tokenId,
-            tickLower: params.tickLower,
-            tickUpper: params.tickUpper,
-            tickSpacing: params.tickSpacing,
-            quoteTokenDecimals: params.quoteTokenDecimals,
-            baseTokenDecimals: params.baseTokenDecimals
-        });
+    ) public pure returns (bytes memory) {
+        return NFTSVG.generateSVG(
+            GenerateSVGParams({
+                quoteTokenSymbol: params.quoteTokenSymbol,
+                baseTokenSymbol: params.baseTokenSymbol,
+                tokenId: params.tokenId,
+                tickSpacing: params.tickSpacing,
+                quoteTokensOwed: quoteTokensOwed,
+                baseTokensOwed: baseTokensOwed,
+                tickLower: params.tickLower,
+                tickUpper: params.tickUpper,
+                quoteTokenDecimals: params.quoteTokenDecimals,
+                baseTokenDecimals: params.baseTokenDecimals
+            })
+        );
     }
 }

@@ -10,9 +10,10 @@ library HexStrings {
         bytes memory buffer = new bytes(2 * length + 2);
         buffer[0] = "0";
         buffer[1] = "x";
-        for (uint256 i = 2 * length + 1; i > 1; --i) {
+        for (uint256 i = 2 * length + 1; i > 1;) {
             buffer[i] = ALPHABET[value & 0xf];
             value >>= 4;
+            unchecked { --i; }
         }
         require(value == 0, "HLI"); // hex length insufficient
         return string(buffer);
@@ -20,9 +21,10 @@ library HexStrings {
 
     function toHexStringNoPrefix(uint256 value, uint256 length) internal pure returns (string memory) {
         bytes memory buffer = new bytes(2 * length);
-        for (uint256 i = buffer.length; i > 0; i--) {
+        for (uint256 i = buffer.length; i > 0;) {
             buffer[i - 1] = ALPHABET[value & 0xf];
             value >>= 4;
+            unchecked { --i; }
         }
         return string(buffer);
     }
