@@ -5,7 +5,7 @@ import "../../core/interfaces/ICLPool.sol";
 import "../../core/libraries/TickMath.sol";
 import "../../core/libraries/BitMath.sol";
 import "../../core/libraries/FullMath.sol";
-import "@openzeppelin/contracts/utils/Strings.sol";
+import "../../../lib/openzeppelin-contracts/contracts/utils/Strings.sol";
 //import "@openzeppelin/contracts/utils/math/SafeMath.sol"; // Unnecessary with 0.8.x
 //import "@openzeppelin/contracts/utils/math/SignedSafeMath.sol"; // Unnecessary with 0.8.x
 import "./HexStrings.sol";

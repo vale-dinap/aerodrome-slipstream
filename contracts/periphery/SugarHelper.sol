@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 pragma solidity >=0.8.0;
 
-import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
+import {Math} from "../../lib/openzeppelin-contracts/contracts/utils/math/Math.sol";
 import {SqrtPriceMath} from "../core/libraries/SqrtPriceMath.sol";
 import {LiquidityAmounts} from "./libraries/LiquidityAmounts.sol";
 import {PositionValue} from "./libraries/PositionValue.sol";

@@ -2,7 +2,7 @@
 pragma solidity >=0.8.0;
 
 import {INonfungiblePositionManager} from "contracts/periphery/NonfungiblePositionManager.sol";
-import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import {ERC20} from "../../../lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol";
 
 // Need to prank to user before
 contract NFTManagerCallee {

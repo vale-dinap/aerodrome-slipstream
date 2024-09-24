@@ -7,7 +7,7 @@ import {IVoter} from "contracts/core/interfaces/IVoter.sol";
 import {IVotingEscrow} from "contracts/core/interfaces/IVotingEscrow.sol";
 import {IFactoryRegistry} from "contracts/core/interfaces/IFactoryRegistry.sol";
 import {ICLGauge} from "contracts/gauge/interfaces/ICLGauge.sol";
-import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import {IERC20} from "../../lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
 import {ICLPool} from "contracts/core/interfaces/ICLPool.sol";
 import {IVotingRewardsFactory} from "contracts/test/interfaces/IVotingRewardsFactory.sol";
 
